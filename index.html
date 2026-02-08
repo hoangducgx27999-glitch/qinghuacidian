@@ -1339,6 +1339,12 @@
             backdrop-filter: blur(5px);
         }
 
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .modal-content {
             background: linear-gradient(135deg, 
                 #667eea 0%, 
@@ -1423,6 +1429,103 @@
 
         body.dark-mode .close-modal:hover {
             color: #fff;
+        }
+
+        /* Auth Modal Styles */
+        .google-login-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: white;
+            color: #444;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .google-login-btn:hover {
+            background: #f8f8f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .google-login-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .vip-emoji {
+            font-size: 32px;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .vip-emoji:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .vip-emoji.selected {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .developer-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .developer-info h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .developer-info p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .developer-info a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .developer-info a:hover {
+            text-decoration: underline;
         }
 
         .filter-section {
@@ -2973,14 +3076,205 @@
                 inset 0 1px 0 rgba(100, 181, 246, 0.4);
         }
     </style>
+
+    <style>
+        /* User Avatar Styles */
+        .user-avatar-container {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 101;
+        }
+
+        .user-avatar-container:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .header-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .default-icon {
+            font-size: 28px;
+            pointer-events: none;
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+            animation: vipPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes vipPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Auth Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .auth-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        body.dark-mode .auth-content {
+            background: #2d3748;
+            color: #fff;
+        }
+
+        .auth-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 3px solid #667eea;
+        }
+
+        .auth-email {
+            font-size: 14px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        body.dark-mode .auth-email {
+            color: #aaa;
+        }
+
+        .auth-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-btn.google {
+            background: #4285f4;
+        }
+
+        .auth-btn.logout {
+            background: #dc3545;
+        }
+
+        .vip-emoji-selector {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .vip-emoji {
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .vip-emoji:hover, .vip-emoji.selected {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
+        .developer-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .developer-info h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .developer-info p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .developer-info {
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+        }
+
+        .limit-warning {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+
 </head>
 <body>
     <div class="container">
         <div class="header" id="header">
             <!-- Title Pill + Settings Buttons -->
             <div class="title-container">
-                <div class="title-pill">
-                    📚
+                <div class="user-avatar-container" id="userAvatarContainer" onclick="openAuthModal()">
+                    <img id="headerAvatar" class="header-avatar" src="" alt="Avatar" style="display:none;">
+                    <span id="defaultIcon" class="default-icon">🥷🏻</span>
+                    <span id="vipBadge" class="vip-badge" style="display:none;">VIP</span>
                 </div>
                 <button class="icon-btn" id="simpleViewBtn" title="Chế độ xem đơn giản">📱</button>
                 <button class="icon-btn" id="practiceBtn" title="Luyện tập">📝</button>
@@ -3034,7 +3328,7 @@
                 <div class="filter-option" style="padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 12px; text-align: center; margin-bottom: 15px;">
                     <div style="color: white; font-size: 16px; font-weight: 800; margin-bottom: 8px;">📚 Từ Điển Thành Ngữ Quán Dụng Ngữ Thông Dụng Hán Việt</div>
                     <div style="color: white; font-size: 14px; font-weight: 700; margin-bottom: 5px;">📊 Số lượng: 2500 thành ngữ</div>
-                    <div style="color: white; font-size: 13px; font-weight: 600; margin-top: 8px;">🏢 Nhà phát hành: Hoàng Minh Đức</div>
+                    <div style="color: white; font-size: 13px; font-weight: 600; margin-top: 8px;">🏢 Nhà phát triển: 青花瓷典 (Zalo: 0343767940)</div>
                 </div>
             </div>
 
@@ -42375,9 +42669,15 @@
         }
 
         function displayWords(words, page) {
+            // 🔒 VIP LIMIT: Giới hạn 100 từ cho user thường (GIỮ NGUYÊN dữ liệu gốc)
+            let limitedWords = words;
+            if (!window.isUserVIP && words.length > 100) {
+                limitedWords = words.slice(0, 100);
+            }
+            
             const start = (page - 1) * wordsPerPage;
             const end = start + wordsPerPage;
-            const paginatedWords = words.slice(start, end);
+            const paginatedWords = limitedWords.slice(start, end);
             
             const resultsDiv = document.getElementById('results');
             
@@ -42395,9 +42695,9 @@
             // Hiển thị trực tiếp, không có animation
             resultsDiv.innerHTML = paginatedWords.map(word => createWordCard(word)).join('');
             
-            const totalPages = Math.ceil(words.length / wordsPerPage);
+            const totalPages = Math.ceil(limitedWords.length / wordsPerPage);
             currentPage = page;
-            displayedWords = words;
+            displayedWords = limitedWords;
             
             // Lưu vị trí trang theo bộ lọc hiện tại
             saveCurrentPosition(page);
@@ -44142,7 +44442,10 @@
         // Initialize - Load vị trí đã lưu cho bộ lọc hiện tại (mặc định là 'all')
         const savedPage = getSavedPosition();
         displayWords(allWords, savedPage);
-        updateStats(allWords.length, allWords.length);
+        
+        // Hiển thị stats với VIP limit
+        const displayCount = window.isUserVIP ? allWords.length : Math.min(100, allWords.length);
+        updateStats(allWords.length, displayCount);
         
         // Thêm class page-active cho trang đầu tiên
         setTimeout(() => {
@@ -44168,5 +44471,276 @@
             <div id="detailModalCard"></div>
         </div>
     </div>
+
+<!-- Auth Modal -->
+<div class="auth-modal" id="authModal">
+    <div class="auth-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+        
+        <!-- Thông tin từ điển -->
+        <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">
+            <h2 style="margin: 0 0 10px 0; font-size: 20px;">📚 Từ Điển Thành Ngữ</h2>
+            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Trung - Việt • 2537 Từ</p>
+        </div>
+        
+        <!-- Logged Out State -->
+        <div id="loggedOutState">
+            <h3 style="text-align: center; margin-bottom: 15px; color: #333;">🔐 Đăng Nhập</h3>
+            
+            <!-- Thông tin về từ điển -->
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+                <h4 style="margin: 0 0 10px 0; color: #667eea; font-size: 15px;">📖 Về từ điển này:</h4>
+                <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.8;">
+                    <li><strong>2537 thành ngữ</strong> Trung - Việt</li>
+                    <li>Pinyin, nghĩa, ví dụ, câu chuyện</li>
+                    <li>Chế độ luyện tập Quiz & PvP</li>
+                    <li>Tìm kiếm thông minh theo âm/nghĩa</li>
+                </ul>
+            </div>
+            
+            <button id="googleLoginBtn" class="google-login-btn" onclick="handleGoogleLogin()">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=" alt="Google" />
+                Đăng nhập với Google
+            </button>
+            
+            <div style="background: #e7f3ff; padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 12px; color: #0066cc; text-align: left;">
+                <strong>💡 Phiên bản miễn phí:</strong> Truy cập 100 từ đầu tiên<br>
+                <strong>✨ VIP:</strong> Mở khóa toàn bộ 2537 từ + tính năng đặc biệt
+            </div>
+        </div>
+        
+        <!-- Logged In State -->
+        <div id="loggedInState" style="display: none;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img id="modalAvatar" src="" alt="Avatar" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px;">
+                <h3 id="userName" style="margin: 5px 0;">Người dùng</h3>
+                <p id="userEmail" style="color: #666; font-size: 14px;"></p>
+            </div>
+            
+            <!-- Non-VIP Message -->
+            <div id="nonVipMessage" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffc107;">
+                <p style="margin: 0; color: #856404;">
+                    ⚠️ Bạn đang sử dụng phiên bản miễn phí (giới hạn 100 từ đầu tiên).
+                    <br><br>
+                    Để mở khóa toàn bộ từ điển, vui lòng liên hệ Admin để nâng cấp VIP.
+                </p>
+            </div>
+            
+            <!-- VIP Message & Emoji Selector -->
+            <div id="vipMessage" style="display: none;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 8px; margin: 15px 0; color: white;">
+                    <p style="margin: 0;">
+                        ✨ <strong>Chúc mừng! Bạn là thành viên VIP</strong>
+                        <br>
+                        Bạn có quyền truy cập TOÀN BỘ từ điển và các tính năng đặc biệt!
+                    </p>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px;">Chọn emoji đại diện của bạn:</h4>
+                    <div id="emojiSelector" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+                        <div class="vip-emoji" data-emoji="🥷🏻">🥷🏻</div>
+                        <div class="vip-emoji" data-emoji="👑">👑</div>
+                        <div class="vip-emoji" data-emoji="⭐">⭐</div>
+                        <div class="vip-emoji" data-emoji="💎">💎</div>
+                        <div class="vip-emoji" data-emoji="🔥">🔥</div>
+                        <div class="vip-emoji" data-emoji="🦁">🦁</div>
+                        <div class="vip-emoji" data-emoji="🐉">🐉</div>
+                        <div class="vip-emoji" data-emoji="🦅">🦅</div>
+                        <div class="vip-emoji" data-emoji="🌟">🌟</div>
+                        <div class="vip-emoji" data-emoji="🎯">🎯</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="logoutBtn" class="logout-btn" onclick="handleLogout()">
+                🚪 Đăng xuất
+            </button>
+        </div>
+
+        <!-- Developer Info -->
+        <div class="developer-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <h3>👨‍💻 Nhà phát triển</h3>
+            <p><strong>青花瓷典</strong></p>
+            <p>📱 Zalo: <strong>0343767940</strong></p>
+            <p>📧 Email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74051d1a131c0115171d101d151a341319151d185a171b19">[email&#160;protected]</a></strong></p>
+        </div>
+    </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyClwIV_A77rzpk_aOxCGF_sSqVGoMvqTls",
+  authDomain: "ieltsgame-8621a.firebaseapp.com",
+  projectId: "ieltsgame-8621a",
+  storageBucket: "ieltsgame-8621a.firebasestorage.app",
+  messagingSenderId: "786419357706",
+  appId: "1:786419357706:web:20dfa9df5c6e9d649167f3"
+};
+
+// VIP email whitelist - Load từ file JSON
+let VIP_EMAILS = [];
+
+// Load VIP emails từ file JSON
+fetch('./vip-emails.json')
+  .then(response => response.json())
+  .then(data => {
+    VIP_EMAILS = data.vipEmails || [];
+    console.log('✅ Loaded VIP emails:', VIP_EMAILS.length, 'emails');
+  })
+  .catch(error => {
+    console.warn('⚠️ Không tìm thấy vip-emails.json, dùng danh sách trống');
+    VIP_EMAILS = [];
+  });
+
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// Elements
+const userAvatarContainer = document.getElementById('userAvatarContainer');
+const headerAvatar = document.getElementById('headerAvatar');
+const defaultIcon = document.getElementById('defaultIcon');
+const vipBadge = document.getElementById('vipBadge');
+const authModal = document.getElementById('authModal');
+const googleLoginBtn = document.getElementById('googleLoginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const loggedOutState = document.getElementById('loggedOutState');
+const loggedInState = document.getElementById('loggedInState');
+const modalAvatar = document.getElementById('modalAvatar');
+const userName = document.getElementById('userName');
+const userEmail = document.getElementById('userEmail');
+const nonVipMessage = document.getElementById('nonVipMessage');
+const vipMessage = document.getElementById('vipMessage');
+const emojiSelector = document.getElementById('emojiSelector');
+
+// Open auth modal
+window.openAuthModal = function() {
+    authModal.classList.add('active');
+};
+
+// Close auth modal
+window.closeAuthModal = function() {
+    authModal.classList.remove('active');
+};
+
+// Click avatar to open modal
+userAvatarContainer.addEventListener('click', openAuthModal);
+
+// Google Login
+googleLoginBtn.addEventListener('click', async () => {
+    try {
+        await signInWithPopup(auth, provider);
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Đăng nhập thất bại: ' + error.message);
+    }
+});
+
+// Logout
+logoutBtn.addEventListener('click', async () => {
+    try {
+        await signOut(auth);
+        closeAuthModal();
+    } catch (error) {
+        console.error('Logout error:', error);
+    }
+});
+
+// VIP Emoji Selection
+emojiSelector.addEventListener('click', (e) => {
+    if (e.target.classList.contains('vip-emoji')) {
+        const selectedEmoji = e.target.dataset.emoji;
+        
+        // Remove previous selection
+        document.querySelectorAll('.vip-emoji').forEach(em => {
+            em.classList.remove('selected');
+        });
+        
+        // Add selection
+        e.target.classList.add('selected');
+        
+        // Update header icon
+        defaultIcon.textContent = selectedEmoji;
+        
+        // Save to localStorage
+        localStorage.setItem('selectedVipEmoji', selectedEmoji);
+    }
+});
+
+// Auth state observer
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is logged in
+        const isVIP = VIP_EMAILS.includes(user.email);
+        
+        // Update header
+        if (user.photoURL) {
+            headerAvatar.src = user.photoURL;
+            headerAvatar.style.display = 'block';
+            defaultIcon.style.display = 'none';
+        } else {
+            headerAvatar.style.display = 'none';
+            defaultIcon.style.display = 'block';
+        }
+        
+        // Show VIP badge if user is VIP
+        if (isVIP) {
+            vipBadge.style.display = 'block';
+            
+            // Load saved emoji
+            const savedEmoji = localStorage.getItem('selectedVipEmoji');
+            if (savedEmoji) {
+                defaultIcon.textContent = savedEmoji;
+                document.querySelector(`[data-emoji="${savedEmoji}"]`)?.classList.add('selected');
+            }
+        } else {
+            vipBadge.style.display = 'none';
+            defaultIcon.textContent = '🥷🏻';
+        }
+        
+        // Update modal
+        modalAvatar.src = user.photoURL || '';
+        userName.textContent = user.displayName || 'Người dùng';
+        userEmail.textContent = user.email;
+        
+        loggedOutState.style.display = 'none';
+        loggedInState.style.display = 'block';
+        
+        if (isVIP) {
+            nonVipMessage.style.display = 'none';
+            vipMessage.style.display = 'block';
+        } else {
+            nonVipMessage.style.display = 'block';
+            vipMessage.style.display = 'none';
+        }
+        
+        console.log('User logged in:', user.email, 'VIP:', isVIP);
+    } else {
+        // User is logged out
+        headerAvatar.style.display = 'none';
+        defaultIcon.style.display = 'block';
+        defaultIcon.textContent = '🥷🏻';
+        vipBadge.style.display = 'none';
+        
+        loggedOutState.style.display = 'block';
+        loggedInState.style.display = 'none';
+        
+        console.log('User logged out');
+    }
+});
+</script>
+
 </body>
 </html>
