@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#1e3a8a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>📚 Từ Điển Thành Ngữ Quán Dụng Ngữ Trung - Việt</title>
@@ -27,7 +27,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             min-height: 100vh;
             padding-bottom: 20px;
             transition: background 0.3s ease;
@@ -37,7 +37,7 @@
         }
 
         body.dark-mode {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0c1e4a 0%, #1e3a8a 100%);
         }
 
         /* Font size options */
@@ -163,7 +163,7 @@
             color: #ffffff;
             font-weight: 800;
             text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4),
-                        0 6px 20px rgba(102, 126, 234, 0.3);
+                        0 6px 20px rgba(30, 58, 138, 0.3);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -196,9 +196,9 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #ffffff;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 13px;
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
                         inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -207,6 +207,15 @@
             align-items: center;
             justify-content: center;
             animation: float 4s ease-in-out infinite;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .icon-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .icon-btn:nth-child(1) { 
@@ -223,6 +232,21 @@
         }
         .icon-btn:nth-child(5) { 
             animation-delay: 2s; 
+        }
+
+        /* Dark/Light mode icon styling */
+        #darkModeToggle {
+            background: rgba(30, 58, 138, 0.8);
+            color: #0c1e4a;
+            font-weight: 700;
+            border: 2px solid rgba(30, 58, 138, 0.5);
+        }
+
+        body.dark-mode #darkModeToggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         body.dark-mode .icon-btn {
@@ -263,16 +287,17 @@
             width: 100%;
             padding: 10px 40px 10px 40px;
             font-size: 16px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(100, 181, 246, 0.2);
             border-radius: 50px;
             outline: none;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(40, 40, 60, 0.2);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            color: #1a4d7a;
-            font-weight: 600;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.1),
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.1),
                         0 2px 6px rgba(0, 0, 0, 0.05);
             -webkit-appearance: none;
             appearance: none;
@@ -280,26 +305,27 @@
         }
 
         .search-box::placeholder {
-            color: rgba(26, 77, 122, 0.5);
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-weight: 600;
         }
 
         .search-box:focus {
-            border-color: rgba(118, 75, 162, 0.4);
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2),
+            border-color: rgba(100, 181, 246, 0.4);
+            background: rgba(40, 40, 60, 0.7);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2),
                         0 4px 10px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
 
         body.dark-mode .search-box {
-            background: rgba(40, 40, 60, 0.5);
-            color: #64b5f6;
+            background: rgba(40, 40, 60, 0.2);
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
             border-color: rgba(100, 181, 246, 0.2);
         }
 
         body.dark-mode .search-box::placeholder {
-            color: rgba(100, 181, 246, 0.5);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         body.dark-mode .search-box:focus {
@@ -313,7 +339,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 16px;
-            color: #667eea;
+            color: #1e3a8a;
         }
 
         body.dark-mode .search-icon {
@@ -346,7 +372,7 @@
 
         .stats {
             text-align: center;
-            color: #667eea;
+            color: #1e3a8a;
             font-size: 10px;
             font-weight: 700;
             margin-top: 4px;
@@ -421,25 +447,25 @@
         }
 
         /* Text Color Options */
-        body.text-dark .chinese { color: #1a202c !important; }
-        body.text-dark .definition { color: #d35400 !important; }
-        body.text-dark .meaning { color: #1a202c !important; }
+        body.text-dark .chinese { color: #1e40af0af !important; }
+        body.text-dark .definition { color: #1e40af !important; }
+        body.text-dark .meaning { color: #1e40af !important; }
 
-        body.text-darker .chinese { color: #000000 !important; }
-        body.text-darker .definition { color: #c0392b !important; }
-        body.text-darker .meaning { color: #000000 !important; }
+        body.text-darker .chinese { color: #1e40af0af !important; }
+        body.text-darker .definition { color: #1e40af !important; }
+        body.text-darker .meaning { color: #1e40af !important; }
 
-        body.text-blue .chinese { color: #1e40af !important; }
-        body.text-blue .definition { color: #ea580c !important; }
-        body.text-blue .meaning { color: #1e3a8a !important; }
+        body.text-blue .chinese { color: #1e40af0af !important; }
+        body.text-blue .definition { color: #1e40af !important; }
+        body.text-blue .meaning { color: #1e40af !important; }
 
-        body.text-purple .chinese { color: #6b21a8 !important; }
-        body.text-purple .definition { color: #ea580c !important; }
-        body.text-purple .meaning { color: #581c87 !important; }
+        body.text-purple .chinese { color: #1e40af0af !important; }
+        body.text-purple .definition { color: #1e40af !important; }
+        body.text-purple .meaning { color: #1e40af !important; }
 
-        body.text-brown .chinese { color: #78350f !important; }
-        body.text-brown .definition { color: #ea580c !important; }
-        body.text-brown .meaning { color: #78350f !important; }
+        body.text-brown .chinese { color: #1e40af0af !important; }
+        body.text-brown .definition { color: #1e40af !important; }
+        body.text-brown .meaning { color: #1e40af !important; }
 
         /* Border Radius Options */
         body.radius-slight .word-card { border-radius: 6px !important; }
@@ -526,7 +552,7 @@
             display: none;
             align-items: center;
             gap: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
             border: none;
             padding: 4px 10px;
@@ -535,13 +561,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 6px rgba(30, 58, 138, 0.3);
             margin-top: 4px;
         }
 
         .detail-btn-simple:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.4);
         }
 
         .detail-btn-simple:active {
@@ -643,17 +669,17 @@
         .chinese {
             font-size: 24px;
             font-weight: 900;
-            color: #2c3e50;
+            color: #ffffff;
             line-height: 1.2;
         }
 
         body.dark-mode .chinese {
-            color: #e0e0e0;
+            color: #ffffff;
         }
 
         .pinyin {
             font-size: 14px;
-            color: #667eea;
+            color: #64b5f6;
             font-style: italic;
             font-weight: 700;
         }
@@ -663,7 +689,7 @@
         }
 
         .speaker-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
             border: none;
             border-radius: 50%;
@@ -671,7 +697,7 @@
             height: 36px;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
             transition: all 0.3s;
             display: flex;
             align-items: center;
@@ -681,7 +707,7 @@
 
         .speaker-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
         }
 
         .speaker-btn:active {
@@ -721,7 +747,7 @@
         }
 
         .filter-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: none;
@@ -733,7 +759,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             user-select: none;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3),
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3),
                         0 2px 6px rgba(0, 0, 0, 0.1);
             pointer-events: auto;
             animation: float 4s ease-in-out infinite;
@@ -779,7 +805,7 @@
 
         .filter-tag:hover {
             transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
         }
 
         .content-wrapper {
@@ -829,7 +855,7 @@
         /* 释义 - Màu cam đậm */
         .definition {
             font-size: 15px;
-            color: #ff6600;
+            color: #d97706;
             font-weight: 600;
             margin-top: 8px;
             margin-bottom: 6px;
@@ -840,25 +866,26 @@
         }
 
         body.dark-mode .definition {
-            color: #ff8533;
+            color: #d97706;
         }
 
         .definition::before {
             content: "释义: ";
             font-weight: 800;
+            color: #d97706 !important;
         }
 
         /* NGHĨA */
         .meaning {
             font-size: 15px;
             font-weight: 700;
-            color: #34495e;
+            color: #1e40af;
             margin-bottom: 6px;
             line-height: 1.5;
         }
 
         body.dark-mode .meaning {
-            color: #e0e0e0;
+            color: #1e40af;
         }
 
         .meaning::before {
@@ -874,12 +901,12 @@
         .synonyms-label {
             font-size: 10px;
             font-weight: 800;
-            color: #667eea;
+            color: #d97706;
             margin-bottom: 4px;
         }
 
         body.dark-mode .synonyms-label {
-            color: #64b5f6;
+            color: #d97706;
         }
 
         .synonyms-label::before {
@@ -1014,7 +1041,7 @@
         }
 
         .expand-btn, .story-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
             border: none;
             padding: 4px 10px;
@@ -1053,7 +1080,7 @@
             align-items: center;
             margin-bottom: 8px;
             padding: 8px;
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(30, 58, 138, 0.05);
             border-radius: 8px;
         }
 
@@ -1128,7 +1155,7 @@
 
         body.dark-mode .example {
             background: #1a1a2e;
-            color: #64b5f6;
+            color: #ffffff;
             border-left-color: #64b5f6;
         }
         
@@ -1346,9 +1373,7 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, 
-                #667eea 0%, 
-                #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             border: 2px solid rgba(255, 255, 255, 0.3);
             margin: 10% auto;
             padding: 15px;
@@ -1382,7 +1407,7 @@
         }
 
         .practice-modal-fullscreen {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             backdrop-filter: none;
         }
 
@@ -1396,7 +1421,7 @@
             align-items: center;
             margin-bottom: 12px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #1e3a8a;
         }
 
         body.dark-mode .modal-header {
@@ -1569,7 +1594,7 @@
         .filter-option:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
         }
 
         body.dark-mode .filter-option:hover {
@@ -1636,7 +1661,7 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
-            scrollbar-color: #667eea rgba(102, 126, 234, 0.2);
+            scrollbar-color: #1e3a8a rgba(30, 58, 138, 0.2);
             scroll-behavior: smooth;
         }
 
@@ -1645,20 +1670,20 @@
         }
 
         .pagination::-webkit-scrollbar-track {
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(30, 58, 138, 0.1);
             border-radius: 10px;
             margin: 0 10px;
         }
 
         .pagination::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             border-radius: 10px;
             transition: all 0.3s;
         }
 
         .pagination::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #764ba2, #667eea);
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            box-shadow: 0 0 10px rgba(30, 58, 138, 0.5);
         }
 
         body.dark-mode .pagination {
@@ -1687,8 +1712,8 @@
 
         .page-btn {
             background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
             padding: 4px 8px;
             border-radius: 6px;
             font-size: 11px;
@@ -1707,15 +1732,15 @@
         }
 
         .page-btn:hover {
-            background: #667eea;
+            background: #1e3a8a;
             color: white;
             transform: translateY(-2px);
         }
 
         .page-btn.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
-            border-color: #764ba2;
+            border-color: #1e40af;
         }
 
         body.dark-mode .page-btn {
@@ -1735,7 +1760,7 @@
         }
 
         .page-ellipsis {
-            color: #667eea;
+            color: #1e3a8a;
             font-weight: 700;
             padding: 0 8px;
             font-size: 13px;
@@ -1747,8 +1772,8 @@
 
         .page-select {
             background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
             padding: 7px 11px;
             border-radius: 7px;
             font-size: 11px;
@@ -1760,14 +1785,14 @@
         }
 
         .page-select:hover {
-            background: #667eea;
+            background: #1e3a8a;
             color: white;
         }
 
         .page-select:focus {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
-            border-color: #764ba2;
+            border-color: #1e40af;
         }
 
         body.dark-mode .page-select {
@@ -1791,7 +1816,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
             border: none;
             border-radius: 50%;
@@ -1802,7 +1827,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
             transition: all 0.3s;
             z-index: 99;
         }
@@ -2130,11 +2155,11 @@
             display: inline-block;
             min-width: 80px;
             padding: 2px 16px;
-            border-bottom: 3px dashed #667eea;
-            color: #667eea;
+            border-bottom: 3px dashed #1e3a8a;
+            color: #1e3a8a;
             font-weight: 900;
             margin: 0 8px;
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(30, 58, 138, 0.05);
             border-radius: 4px;
         }
 
@@ -2449,7 +2474,7 @@
         .result-score {
             font-size: 32px;
             font-weight: 900;
-            color: #667eea;
+            color: #1e3a8a;
             margin-bottom: 20px;
         }
 
@@ -2815,8 +2840,8 @@
 
         .pvp-option:hover:not(.disabled) {
             transform: translateY(-5px) scale(1.03);
-            border-color: #667eea;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: #1e3a8a;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
         }
 
         body.dark-mode .pvp-option {
@@ -2865,7 +2890,7 @@
         }
 
         .pvp-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             color: white;
             border: none;
             padding: 14px 30px;
@@ -2874,12 +2899,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
         }
 
         .pvp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 25px rgba(30, 58, 138, 0.6);
         }
 
         /* PvP Result Screen */
@@ -3084,19 +3109,19 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: none;
             z-index: 101;
         }
 
         .user-avatar-container:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: none;
         }
 
         .header-avatar {
@@ -3172,7 +3197,7 @@
             height: 80px;
             border-radius: 50%;
             margin: 0 auto 15px;
-            border: 3px solid #667eea;
+            border: 3px solid #1e3a8a;
         }
 
         .auth-email {
@@ -3186,7 +3211,7 @@
         }
 
         .auth-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -3200,7 +3225,7 @@
 
         .auth-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
         }
 
         .auth-btn.google {
@@ -3263,7 +3288,70 @@
             font-weight: 600;
             font-size: 14px;
         }
-    </style>
+    
+        /* Override màu chữ thành ngữ và nghĩa */
+        .chinese {
+            color: #1e40af !important;
+        }
+        
+        .meaning,
+        .definition {
+            color: #1e40af !important;
+        }
+
+        /* Override màu chữ 释义 */
+        .definition-label,
+        .synonyms-label {
+            color: #d97706 !important;
+        }
+
+        
+        
+        body.dark-mode .chinese {
+            color: #ffffff !important;
+        }
+
+        /* Dark mode - Chữ thành ngữ màu trắng */
+        body.dark-mode .chinese,
+        body.dark-mode .card-title .chinese,
+        body.dark-mode .chinese-text,
+        body.dark-mode .idiom-card .chinese {
+            color: #ffffff !important;
+        }
+
+        /* === FINAL COLOR OVERRIDES === */
+        
+        /* 释义 - CẢ DÒNG màu vàng cam nâu */
+        .definition,
+        .definition::before {
+            color: #d97706 !important;
+        }
+        
+        body.dark-mode .definition,
+        body.dark-mode .definition::before {
+            color: #d97706 !important;
+        }
+        
+        /* Dark mode - Thành ngữ màu TRẮNG */
+        body.dark-mode .chinese {
+            color: #ffffff !important;
+        }
+        
+        body.dark-mode .card .chinese,
+        body.dark-mode .idiom-card .chinese,
+        body.dark-mode .card-title {
+            color: #ffffff !important;
+        }
+
+        /* Dark mode - Nghĩa tiếng Việt màu trắng */
+        body.dark-mode .meaning {
+            color: #ffffff !important;
+        }
+        
+        body.dark-mode .vietnamese-meaning {
+            color: #ffffff !important;
+        }
+</style>
 
 </head>
 <body>
@@ -3273,14 +3361,14 @@
             <div class="title-container">
                 <div class="user-avatar-container" id="userAvatarContainer" onclick="openAuthModal()">
                     <img id="headerAvatar" class="header-avatar" src="" alt="Avatar" style="display:none;">
-                    <span id="defaultIcon" class="default-icon">🥷🏻</span>
+                    <span id="defaultIcon" class="default-icon">🐼</span>
                     <span id="vipBadge" class="vip-badge" style="display:none;">VIP</span>
                 </div>
-                <button class="icon-btn" id="simpleViewBtn" title="Chế độ xem đơn giản">📱</button>
-                <button class="icon-btn" id="practiceBtn" title="Luyện tập">📝</button>
-                <button class="icon-btn" id="darkModeBtn" title="Chế độ tối">🌙</button>
-                <button class="icon-btn" id="favoritesBtn" title="Yêu thích">❤️</button>
-                <button class="icon-btn" id="settingsBtn" title="Cài đặt">⚙️</button>
+                <button class="icon-btn" id="simpleViewBtn" title="Chế độ xem đơn giản"><img src="data:image/png;base64,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" alt="Avatar"></button>
+                <button class="icon-btn" id="practiceBtn" title="Luyện tập"><img src="data:image/png;base64,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" alt="Luyện tập"></button>
+                <button class="icon-btn" id="darkModeBtn" title="Chế độ tối"><img src="data:image/png;base64,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" alt="Dark Mode"></button>
+                <button class="icon-btn" id="favoritesBtn" title="Yêu thích"><img src="data:image/png;base64,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" alt="Đơn giản"></button>
+                <button class="icon-btn" id="settingsBtn" title="Cài đặt"><img src="data:image/png;base64,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" alt="Cài đặt"></button>
             </div>
             
             <!-- Search Box -->
@@ -3292,6 +3380,7 @@
                     class="search-box" 
                     placeholder="Tìm thành ngữ, pinyin, nghĩa..."
                     autocomplete="off"
+                    style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; caret-color: #ffffff !important;"
                 >
                 <button class="clear-btn" id="clearBtn">✕</button>
             </div>
@@ -3325,7 +3414,7 @@
             </div>
             
             <div class="filter-section">
-                <div class="filter-option" style="padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 12px; text-align: center; margin-bottom: 15px;">
+                <div class="filter-option" style="padding: 15px; background: linear-gradient(135deg, #1e3a8a, #1e40af); border-radius: 12px; text-align: center; margin-bottom: 15px;">
                     <div style="color: white; font-size: 16px; font-weight: 800; margin-bottom: 8px;">📚 Từ Điển Thành Ngữ Quán Dụng Ngữ Thông Dụng Hán Việt</div>
                     <div style="color: white; font-size: 14px; font-weight: 700; margin-bottom: 5px;">📊 Số lượng: 2500 thành ngữ</div>
                     <div style="color: white; font-size: 13px; font-weight: 600; margin-top: 8px;">🏢 Nhà phát triển: 青花瓷典 (Zalo: 0343767940)</div>
@@ -43191,14 +43280,14 @@
 
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
-            darkModeBtn.textContent = '☀️';
+            darkModeBtn.innerHTML = '<img src="data:image/png;base64,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" style="width:40px;height:40px;vertical-align:middle;display:inline-block;" alt="sun">';
         }
 
         darkModeBtn.addEventListener('click', () => {
             playClick();
             isDarkMode = !isDarkMode;
             document.body.classList.toggle('dark-mode');
-            darkModeBtn.textContent = isDarkMode ? '☀️' : '🌙';
+            darkModeBtn.innerHTML = isDarkMode ? '<img src="data:image/png;base64,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" style="width:40px;height:40px;vertical-align:middle;display:inline-block;" alt="sun">' : '<img src="data:image/png;base64,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" style="width:40px;height:40px;vertical-align:middle;display:inline-block;" alt="moon">';
             localStorage.setItem('darkMode', isDarkMode);
         });
 
@@ -43821,7 +43910,7 @@
                         particleCount: 100,
                         spread: 70,
                         origin: { y: 0.6 },
-                        colors: ['#667eea', '#764ba2', '#f093fb', '#4facfe']
+                        colors: ['#1e3a8a', '#1e40af', '#f093fb', '#4facfe']
                     });
                 }
             } else {
@@ -43846,12 +43935,12 @@
                 translationDiv.style.cssText = `
                     margin-top: 15px; 
                     padding: 15px; 
-                    background: ${isDark ? 'rgba(156, 163, 255, 0.15)' : 'rgba(102, 126, 234, 0.1)'}; 
+                    background: ${isDark ? 'rgba(156, 163, 255, 0.15)' : 'rgba(30, 58, 138, 0.1)'}; 
                     border-radius: 10px; 
-                    border-left: 4px solid ${isDark ? '#9ca3ff' : '#667eea'};
+                    border-left: 4px solid ${isDark ? '#9ca3ff' : '#1e3a8a'};
                 `;
                 translationDiv.innerHTML = `
-                    <div style="font-size: 14px; font-weight: 600; color: ${isDark ? '#9ca3ff' : '#667eea'}; margin-bottom: 8px;">
+                    <div style="font-size: 14px; font-weight: 600; color: ${isDark ? '#9ca3ff' : '#1e3a8a'}; margin-bottom: 8px;">
                         ${selected === correct ? '✅ Chính xác!' : '❌ Đáp án đúng: ' + correct}
                     </div>
                     <div style="font-size: 14px; color: ${isDark ? '#cbd5e0' : '#555'}; line-height: 1.6;">
@@ -44478,7 +44567,7 @@
         <span class="close-modal" onclick="closeAuthModal()">&times;</span>
         
         <!-- Thông tin từ điển -->
-        <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">
+        <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; color: white;">
             <h2 style="margin: 0 0 10px 0; font-size: 20px;">📚 Từ Điển Thành Ngữ</h2>
             <p style="margin: 0; font-size: 14px; opacity: 0.9;">Trung - Việt • 2537 Từ</p>
         </div>
@@ -44489,7 +44578,7 @@
             
             <!-- Thông tin về từ điển -->
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
-                <h4 style="margin: 0 0 10px 0; color: #667eea; font-size: 15px;">📖 Về từ điển này:</h4>
+                <h4 style="margin: 0 0 10px 0; color: #1e3a8a; font-size: 15px;">📖 Về từ điển này:</h4>
                 <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #555; line-height: 1.8;">
                     <li><strong>2537 thành ngữ</strong> Trung - Việt</li>
                     <li>Pinyin, nghĩa, ví dụ, câu chuyện</li>
@@ -44528,7 +44617,7 @@
             
             <!-- VIP Message & Emoji Selector -->
             <div id="vipMessage" style="display: none;">
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 8px; margin: 15px 0; color: white;">
+                <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); padding: 15px; border-radius: 8px; margin: 15px 0; color: white;">
                     <p style="margin: 0;">
                         ✨ <strong>Chúc mừng! Bạn là thành viên VIP</strong>
                         <br>
@@ -44707,7 +44796,7 @@ onAuthStateChanged(auth, (user) => {
             }
         } else {
             vipBadge.style.display = 'none';
-            defaultIcon.textContent = '🥷🏻';
+            defaultIcon.textContent = '🐼';
         }
         
         // Update modal
@@ -44731,7 +44820,7 @@ onAuthStateChanged(auth, (user) => {
         // User is logged out
         headerAvatar.style.display = 'none';
         defaultIcon.style.display = 'block';
-        defaultIcon.textContent = '🥷🏻';
+        defaultIcon.textContent = '🐼';
         vipBadge.style.display = 'none';
         
         loggedOutState.style.display = 'block';
