@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1e3a8a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>📚 Từ Điển Thành Ngữ Quán Dụng Ngữ Trung - Việt</title>
+    <title>📚 Từ Điển Thành Ngữ, Quán Dụng Ngữ Thông Dụng Trung Việt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -1429,11 +1429,13 @@
         .modal-content {
             background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            margin: 10% auto;
+            margin: 5% auto;
             padding: 15px;
             border-radius: 20px;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
                         0 0 0 1px rgba(255, 255, 255, 0.2) inset;
             animation: modalSlideIn 0.3s ease;
@@ -1473,8 +1475,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #1e3a8a;
         }
 
@@ -1483,7 +1485,7 @@
         }
 
         .modal-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 800;
             color: #ffffff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -1608,7 +1610,7 @@
         }
 
         .filter-section {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .filter-title {
@@ -1628,10 +1630,23 @@
             gap: 8px;
         }
 
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+        }
+
         .filter-option {
             display: flex;
             align-items: center;
-            padding: 12px;
+            padding: 8px 10px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -3400,23 +3415,93 @@
             opacity: 1;
         }
 
+        .free-emoji {
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .free-emoji:hover, .free-emoji.selected {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
         .developer-info {
             margin-top: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
             color: white;
-            font-size: 13px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .developer-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: glow 8s linear infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
         }
 
         .developer-info h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .developer-info .dev-name {
             font-size: 18px;
+            font-weight: 700;
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
         }
 
         .developer-info p {
-            margin: 8px 0;
-            line-height: 1.6;
+            margin: 10px 0;
+            line-height: 1.8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .developer-info p strong {
+            font-weight: 600;
+        }
+
+        .developer-info a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .developer-info a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
         body.dark-mode .developer-info {
@@ -3558,37 +3643,37 @@
             </div>
             
             <div class="filter-section">
-                <div class="filter-option" style="padding: 15px; background: linear-gradient(135deg, #1e3a8a, #1e40af); border-radius: 12px; text-align: center; margin-bottom: 15px;">
-                    <div style="color: white; font-size: 16px; font-weight: 800; margin-bottom: 8px;">📚 Từ Điển Thành Ngữ Quán Dụng Ngữ Thông Dụng Hán Việt</div>
-                    <div style="color: white; font-size: 14px; font-weight: 700; margin-bottom: 5px;">📊 Số lượng: 2500 thành ngữ</div>
-                    <div style="color: white; font-size: 13px; font-weight: 600; margin-top: 8px;">🏢 Nhà phát triển: 青花瓷典 (Zalo: 0343767940)</div>
+                <div class="filter-option" style="padding: 12px; background: linear-gradient(135deg, #1e3a8a, #1e40af); border-radius: 12px; text-align: center; margin-bottom: 10px;">
+                    <div style="color: white; font-size: 14px; font-weight: 800; margin-bottom: 5px;">📚 Từ Điển Thành Ngữ, Quán Dụng Ngữ Thông Dụng Trung Việt</div>
+                    <div style="color: white; font-size: 12px; font-weight: 700; margin-bottom: 3px;">📊 Số lượng: 2500 thành ngữ</div>
+                    <div style="color: white; font-size: 11px; font-weight: 600; margin-top: 5px;">🏢 Nhà phát triển: 青花瓷典 (Zalo: 0343767940)</div>
                 </div>
             </div>
 
             <div class="filter-section">
                 <div class="filter-title">⚙️ Cài đặt</div>
-                <div class="filter-options">
-                    <div class="filter-option">
-                        <label for="fontSelect" style="margin-bottom: 5px; display: block; font-size: 12px; font-weight: 700; color: #2d3748;">Font chữ:</label>
-                        <select id="fontSelect" style="width: 100%; padding: 6px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 13px; font-weight: 600;">
+                <div class="settings-grid">
+                    <div class="filter-option" style="display: block;">
+                        <label for="fontSelect" style="margin-bottom: 3px; display: block; font-size: 11px; font-weight: 700; color: #ffffff;">Font chữ:</label>
+                        <select id="fontSelect" style="width: 100%; padding: 5px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 12px; font-weight: 600;">
                             <option value="system">Hệ thống</option>
                             <option value="noto-sans">Noto Sans</option>
                             <option value="roboto">Roboto</option>
                             <option value="open-sans">Open Sans</option>
                         </select>
                     </div>
-                    <div class="filter-option" style="margin-top: 10px;">
-                        <label for="fontSizeSelect" style="margin-bottom: 5px; display: block; font-size: 12px; font-weight: 700; color: #2d3748;">Kích thước:</label>
-                        <select id="fontSizeSelect" style="width: 100%; padding: 6px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 13px; font-weight: 600;">
+                    <div class="filter-option" style="display: block;">
+                        <label for="fontSizeSelect" style="margin-bottom: 3px; display: block; font-size: 11px; font-weight: 700; color: #ffffff;">Kích thước:</label>
+                        <select id="fontSizeSelect" style="width: 100%; padding: 5px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 12px; font-weight: 600;">
                             <option value="small">Nhỏ</option>
                             <option value="medium" selected>Vừa</option>
                             <option value="large">Lớn</option>
                             <option value="xlarge">Rất lớn</option>
                         </select>
                     </div>
-                    <div class="filter-option" style="margin-top: 10px;">
-                        <label for="textColorSelect" style="margin-bottom: 5px; display: block; font-size: 12px; font-weight: 700; color: #2d3748;">Màu chữ:</label>
-                        <select id="textColorSelect" style="width: 100%; padding: 6px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 13px; font-weight: 600;">
+                    <div class="filter-option" style="display: block;">
+                        <label for="textColorSelect" style="margin-bottom: 3px; display: block; font-size: 11px; font-weight: 700; color: #ffffff;">Màu chữ:</label>
+                        <select id="textColorSelect" style="width: 100%; padding: 5px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 12px; font-weight: 600;">
                             <option value="default" selected>Mặc định</option>
                             <option value="dark">Đậm đen</option>
                             <option value="blue">Xanh dương</option>
@@ -3600,9 +3685,9 @@
                             <option value="orange">Cam</option>
                         </select>
                     </div>
-                    <div class="filter-option" style="margin-top: 10px;">
-                        <label for="bgColorSelect" style="margin-bottom: 5px; display: block; font-size: 12px; font-weight: 700; color: #2d3748;">🎨 Màu nền:</label>
-                        <select id="bgColorSelect" style="width: 100%; padding: 6px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 13px; font-weight: 600;">
+                    <div class="filter-option" style="display: block;">
+                        <label for="bgColorSelect" style="margin-bottom: 3px; display: block; font-size: 11px; font-weight: 700; color: #ffffff;">🎨 Màu nền:</label>
+                        <select id="bgColorSelect" style="width: 100%; padding: 5px; border-radius: 8px; border: 1px solid #e0e0e0; font-size: 12px; font-weight: 600;">
                             <option value="default" selected>🔵 Mặc định (Xanh lam)</option>
                             <option value="white">⬜ Trắng</option>
                             <option value="cream">🟡 Kem nhạt</option>
@@ -3620,7 +3705,7 @@
             </div>
 
             <div class="developer-info" style="display: none;">
-                <p><strong>📚 Từ Điển Thành Ngữ - Quán Dụng Ngữ Trung Việt</strong></p>
+                <p><strong>📚 Từ Điển Thành Ngữ, Quán Dụng Ngữ Thông Dụng Trung Việt</strong></p>
                 <p>Nhà phát triển: <strong>Hoàng Minh Đức</strong></p>
                 <p style="font-size: 12px; margin-top: 10px;">© 2024 - Phiên bản 1.0</p>
             </div>
@@ -3832,8 +3917,8 @@
             <div class="filter-section" style="max-height: 70vh; overflow-y: auto; padding-right: 5px;">
                 <!-- Số câu hỏi -->
                 <div class="filter-option">
-                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #1a202c;">
-                        📊 Số lượng câu hỏi: <span id="questionCountDisplay" style="color: #8b5cf6; font-weight: 800;">10</span>
+                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #ffffff;">
+                        📊 Số lượng câu hỏi: <span id="questionCountDisplay" style="color: #fbbf24; font-weight: 800;">10</span>
                     </label>
                     <input type="range" min="5" max="50" value="10" step="5" 
                            id="questionCountSlider" 
@@ -3847,8 +3932,8 @@
 
                 <!-- Thời gian -->
                 <div class="filter-option" style="margin-top: 20px;">
-                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #1a202c;">
-                        ⏱️ Thời gian mỗi câu: <span id="timePerQuestionDisplay" style="color: #8b5cf6; font-weight: 800;">15 giây</span>
+                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #ffffff;">
+                        ⏱️ Thời gian mỗi câu: <span id="timePerQuestionDisplay" style="color: #fbbf24; font-weight: 800;">15 giây</span>
                     </label>
                     <select id="timePerQuestionSelect" 
                             style="width: 100%; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; background: white; cursor: pointer;"
@@ -3866,8 +3951,8 @@
 
                 <!-- Âm lượng nhạc -->
                 <div class="filter-option" style="margin-top: 20px;">
-                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #1a202c;">
-                        🔊 Âm lượng nhạc nền: <span id="musicVolumeDisplay" style="color: #8b5cf6; font-weight: 800;">15%</span>
+                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #ffffff;">
+                        🔊 Âm lượng nhạc nền: <span id="musicVolumeDisplay" style="color: #fbbf24; font-weight: 800;">15%</span>
                     </label>
                     <input type="range" min="0" max="100" value="15" step="5" 
                            id="musicVolumeSlider" 
@@ -3882,7 +3967,7 @@
                 <!-- Phát âm tự động -->
                 <div class="filter-option" style="margin-top: 20px;">
                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <label style="font-size: 14px; font-weight: 700; color: #1a202c;">
+                        <label style="font-size: 14px; font-weight: 700; color: #ffffff;">
                             🗣️ Phát âm tự động
                         </label>
                         <label style="position: relative; display: inline-block; width: 50px; height: 26px;">
@@ -3896,7 +3981,7 @@
 
                 <!-- Cỡ chữ -->
                 <div class="filter-option" style="margin-top: 20px;">
-                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #1a202c;">
+                    <label style="margin-bottom: 8px; display: block; font-size: 14px; font-weight: 700; color: #ffffff;">
                         📏 Cỡ chữ đáp án
                     </label>
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
@@ -45346,7 +45431,7 @@
         
         <!-- Thông tin từ điển -->
         <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; color: white;">
-            <h2 style="margin: 0 0 10px 0; font-size: 20px;">📚 Từ Điển Thành Ngữ</h2>
+            <h2 style="margin: 0 0 10px 0; font-size: 20px;">📚 Từ Điển Thành Ngữ, Quán Dụng Ngữ Thông Dụng Trung Việt</h2>
             <p style="margin: 0; font-size: 14px; opacity: 0.9;">Trung - Việt • 2537 Từ</p>
         </div>
         
@@ -45386,11 +45471,22 @@
             
             <!-- Non-VIP Message -->
             <div id="nonVipMessage" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ffc107;">
-                <p style="margin: 0; color: #856404;">
+                <p style="margin: 0 0 15px 0; color: #856404;">
                     ⚠️ Bạn đang sử dụng phiên bản miễn phí (giới hạn 100 từ đầu tiên).
                     <br><br>
                     Để mở khóa toàn bộ từ điển, vui lòng liên hệ Admin để nâng cấp VIP.
                 </p>
+                
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e6c200;">
+                    <h4 style="margin-bottom: 10px; color: #856404;">Chọn emoji đại diện của bạn:</h4>
+                    <div id="freeEmojiSelector" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+                        <div class="free-emoji" data-emoji="🐼">🐼</div>
+                        <div class="free-emoji" data-emoji="🐶">🐶</div>
+                        <div class="free-emoji" data-emoji="🦊">🦊</div>
+                        <div class="free-emoji" data-emoji="🐷">🐷</div>
+                        <div class="free-emoji" data-emoji="🦉">🦉</div>
+                    </div>
+                </div>
             </div>
             
             <!-- VIP Message & Emoji Selector -->
@@ -45406,16 +45502,25 @@
                 <div style="margin-top: 20px;">
                     <h4 style="margin-bottom: 10px;">Chọn emoji đại diện của bạn:</h4>
                     <div id="emojiSelector" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+                        <div class="vip-emoji" data-emoji="🤵🏻‍♂️">🤵🏻‍♂️</div>
+                        <div class="vip-emoji" data-emoji="🧟‍♂️">🧟‍♂️</div>
+                        <div class="vip-emoji" data-emoji="👼🏻">👼🏻</div>
+                        <div class="vip-emoji" data-emoji="🐯">🐯</div>
+                        <div class="vip-emoji" data-emoji="🎅🏻">🎅🏻</div>
+                        <div class="vip-emoji" data-emoji="☠️">☠️</div>
+                        <div class="vip-emoji" data-emoji="🕵🏻‍♂️">🕵🏻‍♂️</div>
+                        <div class="vip-emoji" data-emoji="👨🏻‍✈️">👨🏻‍✈️</div>
+                        <div class="vip-emoji" data-emoji="👮🏻‍♂️">👮🏻‍♂️</div>
+                        <div class="vip-emoji" data-emoji="🤴🏻">🤴🏻</div>
                         <div class="vip-emoji" data-emoji="🥷🏻">🥷🏻</div>
+                        <div class="vip-emoji" data-emoji="😭">😭</div>
+                        <div class="vip-emoji" data-emoji="😍">😍</div>
+                        <div class="vip-emoji" data-emoji="💩">💩</div>
+                        <div class="vip-emoji" data-emoji="👲🏻">👲🏻</div>
+                        <div class="vip-emoji" data-emoji="🧛🏻‍♂️">🧛🏻‍♂️</div>
+                        <div class="vip-emoji" data-emoji="🗿">🗿</div>
                         <div class="vip-emoji" data-emoji="👑">👑</div>
-                        <div class="vip-emoji" data-emoji="⭐">⭐</div>
                         <div class="vip-emoji" data-emoji="💎">💎</div>
-                        <div class="vip-emoji" data-emoji="🔥">🔥</div>
-                        <div class="vip-emoji" data-emoji="🦁">🦁</div>
-                        <div class="vip-emoji" data-emoji="🐉">🐉</div>
-                        <div class="vip-emoji" data-emoji="🦅">🦅</div>
-                        <div class="vip-emoji" data-emoji="🌟">🌟</div>
-                        <div class="vip-emoji" data-emoji="🎯">🎯</div>
                     </div>
                 </div>
             </div>
@@ -45426,11 +45531,11 @@
         </div>
 
         <!-- Developer Info -->
-        <div class="developer-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div class="developer-info">
             <h3>👨‍💻 Nhà phát triển</h3>
-            <p><strong>青花瓷典</strong></p>
-            <p>📱 Zalo: <strong>0343767940</strong></p>
-            <p>📧 Email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74051d1a131c0115171d101d151a341319151d185a171b19">[email&#160;protected]</a></strong></p>
+            <div class="dev-name">⚜️ 青花瓷典 ⚜️</div>
+            <p>📱 <strong>Zalo:</strong> 0343767940</p>
+            <p>📧 <strong>Email:</strong> <a href="mailto:qinghuacidian@gmail.com">qinghuacidian@gmail.com</a></p>
         </div>
     </div>
 </div>
@@ -45548,6 +45653,32 @@ emojiSelector.addEventListener('click', (e) => {
     }
 });
 
+// Free User Emoji Selection
+const freeEmojiSelector = document.getElementById('freeEmojiSelector');
+if (freeEmojiSelector) {
+    freeEmojiSelector.addEventListener('click', (e) => {
+        if (e.target.classList.contains('free-emoji')) {
+            const selectedEmoji = e.target.dataset.emoji;
+            
+            // Remove previous selection
+            document.querySelectorAll('.free-emoji').forEach(em => {
+                em.classList.remove('selected');
+            });
+            
+            // Add selection
+            e.target.classList.add('selected');
+            
+            // Update header icon
+            headerAvatar.style.display = 'none';
+            defaultIcon.style.display = 'block';
+            defaultIcon.textContent = selectedEmoji;
+            
+            // Save to localStorage
+            localStorage.setItem('selectedFreeEmoji', selectedEmoji);
+        }
+    });
+}
+
 // Auth state observer
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -45582,7 +45713,20 @@ onAuthStateChanged(auth, (user) => {
             }
         } else {
             vipBadge.style.display = 'none';
-            defaultIcon.textContent = '🐼';
+            
+            // Load saved free emoji for non-VIP users
+            const savedFreeEmoji = localStorage.getItem('selectedFreeEmoji');
+            if (savedFreeEmoji) {
+                headerAvatar.style.display = 'none';
+                defaultIcon.style.display = 'block';
+                defaultIcon.textContent = savedFreeEmoji;
+                // Set selected state in modal
+                setTimeout(() => {
+                    document.querySelector(`[data-emoji="${savedFreeEmoji}"]`)?.classList.add('selected');
+                }, 100);
+            } else {
+                defaultIcon.textContent = '🐼';
+            }
         }
         
         // Update modal
