@@ -34,7 +34,6 @@
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
         }
-        }
 
         body.dark-mode {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -45539,7 +45538,9 @@ emojiSelector.addEventListener('click', (e) => {
         // Add selection
         e.target.classList.add('selected');
         
-        // Update header icon
+        // 🔥 FIX: Update header icon - ẩn avatar ảnh, hiện emoji
+        headerAvatar.style.display = 'none';
+        defaultIcon.style.display = 'block';
         defaultIcon.textContent = selectedEmoji;
         
         // Save to localStorage
@@ -45553,25 +45554,31 @@ onAuthStateChanged(auth, (user) => {
         // User is logged in
         const isVIP = VIP_EMAILS.includes(user.email);
         
-        // Update header
-        if (user.photoURL) {
-            headerAvatar.src = user.photoURL;
-            headerAvatar.style.display = 'block';
-            defaultIcon.style.display = 'none';
-        } else {
-            headerAvatar.style.display = 'none';
-            defaultIcon.style.display = 'block';
-        }
+        // 🔥 FIX: Set global VIP status
+        window.isUserVIP = isVIP;
         
         // Show VIP badge if user is VIP
         if (isVIP) {
             vipBadge.style.display = 'block';
             
-            // Load saved emoji
+            // 🔥 FIX: Load saved emoji - ưu tiên emoji hơn avatar ảnh
             const savedEmoji = localStorage.getItem('selectedVipEmoji');
             if (savedEmoji) {
+                // Nếu có emoji đã chọn, hiện emoji thay vì ảnh
+                headerAvatar.style.display = 'none';
+                defaultIcon.style.display = 'block';
                 defaultIcon.textContent = savedEmoji;
                 document.querySelector(`[data-emoji="${savedEmoji}"]`)?.classList.add('selected');
+            } else if (user.photoURL) {
+                // Nếu chưa chọn emoji, hiện ảnh avatar
+                headerAvatar.src = user.photoURL;
+                headerAvatar.style.display = 'block';
+                defaultIcon.style.display = 'none';
+            } else {
+                // Nếu không có gì, hiện icon mặc định
+                headerAvatar.style.display = 'none';
+                defaultIcon.style.display = 'block';
+                defaultIcon.textContent = '🐼';
             }
         } else {
             vipBadge.style.display = 'none';
@@ -45594,9 +45601,16 @@ onAuthStateChanged(auth, (user) => {
             vipMessage.style.display = 'none';
         }
         
+        // 🔥 FIX: Reload word list khi login để áp dụng VIP status
+        if (typeof displayWords === 'function' && typeof allWords !== 'undefined') {
+            displayWords(allWords, currentPage || 1);
+        }
+        
         console.log('User logged in:', user.email, 'VIP:', isVIP);
     } else {
         // User is logged out
+        window.isUserVIP = false;
+        
         headerAvatar.style.display = 'none';
         defaultIcon.style.display = 'block';
         defaultIcon.textContent = '🐼';
@@ -45604,6 +45618,11 @@ onAuthStateChanged(auth, (user) => {
         
         loggedOutState.style.display = 'block';
         loggedInState.style.display = 'none';
+        
+        // 🔥 FIX: Reload word list khi logout để áp dụng giới hạn 100 từ
+        if (typeof displayWords === 'function' && typeof allWords !== 'undefined') {
+            displayWords(allWords, currentPage || 1);
+        }
         
         console.log('User logged out');
     }
